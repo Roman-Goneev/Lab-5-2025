@@ -1,0 +1,21 @@
+package functions;
+
+// 1. Расширяем Function - extends Function 2. Добавляем Serializable для Задания 9
+public interface TabulatedFunction extends Function, java.io.Serializable, Cloneable {
+    // Методы getLeftDomainBorder, getRightDomainBorder, getFunctionValue теперь наследуются из Function
+
+    int getPointsCount();
+    FunctionPoint getPoint(int index);
+    void setPoint(int index, FunctionPoint point) throws InappropriateFunctionPointException;
+    double getPointX(int index);
+    void setPointX(int index, double x) throws InappropriateFunctionPointException;
+    double getPointY(int index);
+    void setPointY(int index, double y);
+    void deletePoint(int index);
+    void addPoint(FunctionPoint point) throws InappropriateFunctionPointException;
+
+    String toString();
+    boolean equals(Object obj);
+    int hashCode();
+    Object clone();
+}
