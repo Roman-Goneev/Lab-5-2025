@@ -181,7 +181,7 @@ public class ArrayTabulatedFunction implements TabulatedFunction, Cloneable {
         if (o instanceof ArrayTabulatedFunction other) { // Если o не ArrayTabulatedFunction, то False
             if (points.length != other.points.length) return false; // Если разное количество точек, то false
             for (int i = 0; i < points.length; i++) {
-                if (!points[i].equals(other.points[i])) return false; // Если хотя бы одна пара точек не равна, то false(функции не равны)
+                if (!this.points[i].equals(other.points[i])) return false; // Если хотя бы одна пара точек не равна, то false(функции не равны)
             }
             return true;
         }
@@ -198,9 +198,9 @@ public class ArrayTabulatedFunction implements TabulatedFunction, Cloneable {
     // Хэш-код функции
     @Override
     public int hashCode(){
-        int result = points.length; // Количество точек
-        for (FunctionPoint point : points) {  // point — текущая точка
-            result ^= point.hashCode(); // Хэш-код точки
+        int result = getPointsCount(); // Количество точек
+        for (int i = 0; i < getPointsCount(); i++) {  // point — текущая точка
+            result = result  * 3 + points[i].hashCode(); // Хэш-код точки
         }
         return result;
     }

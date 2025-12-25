@@ -1,6 +1,7 @@
 package functions;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -14,6 +15,10 @@ public class LinkedListTabulatedFunction implements TabulatedFunction, Externali
         FunctionPoint point;
         FunctionNode prev;
         FunctionNode next;
+
+        public FunctionPoint getPoint(){
+            return point;
+        }
     }
 
     private FunctionNode head; // Голова списка
@@ -83,7 +88,6 @@ public class LinkedListTabulatedFunction implements TabulatedFunction, Externali
             }
             // Глубокое копирование
             addNodeToTail().point = new FunctionPoint(points[i]);
-            this.count++;
         }
     }
 
@@ -112,6 +116,7 @@ public class LinkedListTabulatedFunction implements TabulatedFunction, Externali
         newNode.next = head;
         head.prev.next = newNode;
         head.prev = newNode;
+        count ++;
         return newNode;
     }
 
@@ -190,6 +195,7 @@ public class LinkedListTabulatedFunction implements TabulatedFunction, Externali
         checkIndex(index);
         return new FunctionPoint(getNodeByIndex(index).point);
     }
+
 
     public void setPoint(int index, FunctionPoint point) throws InappropriateFunctionPointException {
         checkIndex(index);
@@ -344,17 +350,11 @@ public class LinkedListTabulatedFunction implements TabulatedFunction, Externali
 
     @Override
     public int hashCode(){
-        final int Prime = 31; //
-        int result  = 1; // "Накопитель" хэша
-        // Несколько шагов хэширования для учета всех полей класса
-        result = Prime * Double.hashCode(getLeftDomainBorder()); // Первый шаг - учитывает левую границу
-        result = Prime * Double.hashCode(getRightDomainBorder()); // Первый шаг - учитывает правую границу
-        result = Prime * result + count; // Первый шаг - учитывает количество точек
-
-        FunctionNode current = head.next; // Старт обхода
+        int result = count; //
+        FunctionNode current = head.next;
         while (current != head){
-            result = Prime * result + current.hashCode(); // Хэш текущей точки
-            current = current.next; // Следующая точка
+            result = (3 * result) + current.getPoint().hashCode(); //
+            current = current.next;
         }
         return result;
     }

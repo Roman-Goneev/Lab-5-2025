@@ -66,12 +66,11 @@ public class FunctionPoint implements java.io.Serializable, Cloneable{
         long xBits = Double.doubleToLongBits(x); // Копирование 64 битов double в long
         long yBits = Double.doubleToLongBits(y); // Копирование 64 битов double в long
 
-        int xHigh = (int) (xBits >> 32); // Старшие 32 бита x
-        int xLow = (int) xBits; // Младшие 32 бита x
-        int yHigh = (int) (yBits >> 32); // Старшие 32 бита y
-        int yLow = (int) yBits; // Младшие 32 бита y
+        int x_hash = (int) (xBits ^ (xBits >>> 32));
+        int y_hash = (int) (yBits ^ (yBits >>> 32));
 
-        return xHigh ^ xLow ^ yHigh ^ yLow; // смешивает все 4 части
+        return (x_hash * 3) + y_hash; //
+
     }
 
     // Возвращает объект-копию для объекта точки

@@ -27,10 +27,10 @@ public class Main {
         };
 
         FunctionPoint[] points3 = {
-                new FunctionPoint(1.0, 1.0),
-                new FunctionPoint(2.0, 4.0),
-                new FunctionPoint(3.0, 9.0),
-                new FunctionPoint(4.0, 16.0)
+                new FunctionPoint(1.0, 6.0),
+                new FunctionPoint(2.0, 9.0),
+                new FunctionPoint(3.0, 12.0),
+                new FunctionPoint(4.0, 15.0)
         };
 
         System.out.println(" ТЕСТ 1. toString()");
@@ -45,14 +45,15 @@ public class Main {
         ArrayTabulatedFunction arrayFunc2 = new ArrayTabulatedFunction(points2);
         LinkedListTabulatedFunction listFunc2 = new LinkedListTabulatedFunction(points2);
 
-        System.out.println("array1==array2: " + arrayFunc1.equals(arrayFunc2));
-        System.out.println("array1==list2:  " + arrayFunc1.equals(listFunc2));
-        System.out.println("array1!=array3: " + arrayFunc1.equals(new ArrayTabulatedFunction(points3)));
+        System.out.println("array1 == array2: " + arrayFunc1.equals(arrayFunc2));
+        System.out.println("array1 == list1:  " + arrayFunc1.equals(listFunc1));
+        System.out.println("array1 != array3: " + arrayFunc1.equals(new ArrayTabulatedFunction(points3)));
         System.out.println();
 
         System.out.println(" ТЕСТ 3. hashCode()");
         System.out.println("hash array1: " + arrayFunc1.hashCode());
         System.out.println("hash array2: " + arrayFunc2.hashCode());
+        System.out.println("LinkedList1: " + listFunc1.hashCode());
         arrayFunc1.setPointY(0, 1.001);
         System.out.println("hash array1 (изменён): " + arrayFunc1.hashCode());
         System.out.println();
@@ -62,5 +63,7 @@ public class Main {
         System.out.println("До:  " + arrayClone.getPointY(0));
         arrayFunc2.setPointY(0, 999.0);
         System.out.println("После: " + arrayClone.getPointY(0));
+
+
     }
 }
