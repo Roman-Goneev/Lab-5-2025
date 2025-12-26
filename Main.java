@@ -55,7 +55,10 @@ public class Main {
         System.out.println("hash array2: " + arrayFunc2.hashCode());
         System.out.println("LinkedList1: " + listFunc1.hashCode());
         arrayFunc1.setPointY(0, 1.001);
-        System.out.println("hash array1 (изменён): " + arrayFunc1.hashCode());
+        System.out.println("hash array1 (изменен): " + arrayFunc1.hashCode());
+        listFunc1.setPointY(0, 1.001);
+        System.out.println("hash LinkedList (изменен): " + listFunc1.hashCode());
+
         System.out.println();
 
         System.out.println(" ТЕСТ 4. clone()");

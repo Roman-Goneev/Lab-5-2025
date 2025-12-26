@@ -69,7 +69,7 @@ public class FunctionPoint implements java.io.Serializable, Cloneable{
         int x_hash = (int) (xBits ^ (xBits >>> 32));
         int y_hash = (int) (yBits ^ (yBits >>> 32));
 
-        return (x_hash * 3) + y_hash; //
+        return (x_hash * 3) + y_hash;
 
     }
 
